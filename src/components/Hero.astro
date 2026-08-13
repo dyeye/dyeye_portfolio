@@ -83,6 +83,10 @@ const lastName = nameParts[nameParts.length - 1];
         src={`${import.meta.env.BASE_URL}assets/hero_portrait.webp`}
         alt={t.hero.portraitAlt.replace('{name}', data.profile.name)}
         class="portrait-img"
+        width="720"
+        height="1280"
+        decoding="async"
+        fetchpriority="high"
       />
     </div>
   </div>
