@@ -1,11 +1,20 @@
 ---
 // Interests.astro - "What drives me" (Figma: #9:288)
+import data from '../data/data.json';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+const cards = t.interests.cards;
 ---
 
 <div class="interests-section reveal-scroll">
   <div class="interests-header">
     <h2 class="interests-title">
-      What drives me
+      {t.interests.title}
       <svg class="doodle-loop" width="32" height="32" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M6 30 C 16 6, 32 6, 34 18 C 35 25, 24 32, 12 26" stroke="#C1F100" stroke-width="3.5" fill="none" stroke-linecap="round" />
       </svg>
@@ -21,9 +30,9 @@
           <path d="M4.7 15.3c-1.6 2.4-2.8 6.4-3.3 9.8 3.4-.5 7.4-1.7 9.8-3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none" />
         </svg>
       </div>
-      <h3 class="interest-title">Structural Harmony</h3>
+      <h3 class="interest-title">{cards[0].title}</h3>
       <p class="interest-desc">
-        Finding the perfect balance between robust invisible grids and chaotic visible content.
+        {cards[0].desc}
       </p>
     </article>
 
@@ -35,9 +44,9 @@
           <path d="M3.5 22h16.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
         </svg>
       </div>
-      <h3 class="interest-title">Ink & Paper</h3>
+      <h3 class="interest-title">{cards[1].title}</h3>
       <p class="interest-desc">
-        The analog world is my primary source of inspiration. Moleskines over monitors.
+        {cards[1].desc}
       </p>
     </article>
 
@@ -49,9 +58,9 @@
           <path d="M14.2 3.5c0-1 .9-1.8 1.8-1.5 1.2.4 1.2 2.3 0 2.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
         </svg>
       </div>
-      <h3 class="interest-title">Caffeine & Code</h3>
+      <h3 class="interest-title">{cards[2].title}</h3>
       <p class="interest-desc">
-        Fueling late-night debugging sessions and morning typography adjustments.
+        {cards[2].desc}
       </p>
     </article>
   </div>

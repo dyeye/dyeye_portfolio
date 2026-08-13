@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dyeye.github.io/dyeye_portfolio/sitemap-index.xml

@@ -3,18 +3,26 @@
 import Button from "./Button.astro";
 import data from "../data/data.json";
 
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+
 const socialLinks = data.socialLinks.map((id) => data.links[id]);
 const profile = data.profile;
+const alertMessage = t.contact.alert.replace('{name}', profile.name);
 ---
 
 <section id="contact" class="contact-section reveal-scroll">
   <div class="contact-grid">
     <div class="contact-left">
-      <h2 class="contact-heading">Let's Talk</h2>
+      <h2 class="contact-heading">{t.contact.heading}</h2>
 
       <div class="quote-wrap">
         <span class="quote-highlight" aria-hidden="true"></span>
-        <p class="contact-quote">"Let's create something amazing together!"</p>
+        <p class="contact-quote">{t.contact.quote}</p>
       </div>
 
       <svg
@@ -120,10 +128,10 @@ const profile = data.profile;
       <div class="form-block">
         <form
           class="contact-form"
-          onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent to {profile.name}.');"
+          onsubmit="event.preventDefault(); alert('{alertMessage}');"
         >
           <div class="form-group">
-            <label for="name" class="label-caps form-label">YOUR NAME</label>
+            <label for="name" class="label-caps form-label">{t.contact.yourName}</label>
             <input
               type="text"
               id="name"
@@ -134,7 +142,7 @@ const profile = data.profile;
           </div>
 
           <div class="form-group">
-            <label for="email" class="label-caps form-label">YOUR EMAIL</label>
+            <label for="email" class="label-caps form-label">{t.contact.yourEmail}</label>
             <input
               type="email"
               id="email"
@@ -145,18 +153,18 @@ const profile = data.profile;
           </div>
 
           <div class="form-group">
-            <label for="msg" class="label-caps form-label">MESSAGE</label>
+            <label for="msg" class="label-caps form-label">{t.contact.message}</label>
             <textarea
               id="msg"
               rows="4"
               required
               class="form-input form-textarea"
-              placeholder="Tell me about your project..."></textarea>
+              placeholder={t.contact.messagePlaceholder}></textarea>
           </div>
 
           <div class="form-submit-row">
             <Button type="submit" variant="display" size="xl">
-              Send message
+              {t.contact.submit}
               <svg
                 width="16"
                 height="16"

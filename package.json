@@ -23,5 +23,8 @@
   },
   "workspaces": [
     "."
-  ]
+  ],
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.3"
+  }
 }

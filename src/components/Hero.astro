@@ -3,6 +3,13 @@
 import Button from "./Button.astro";
 import data from "../data/data.json";
 
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+
 const nameParts = data.profile.name.split(" ");
 const firstNameLine = nameParts.slice(0, -1).join(" ");
 const lastName = nameParts[nameParts.length - 1];
@@ -30,23 +37,21 @@ const lastName = nameParts[nameParts.length - 1];
   <div class="hero-layout">
     <div class="hero-content">
       <h1 class="hero-title">
-        Hello, I'm<br />
+        {t.hero.greeting}<br />
         <span class="hero-name-highlight">{firstNameLine}<br />{lastName}</span>
         <br />
-        I sketch code and<br />
-        design<br />
-        experiences.
+        {t.hero.line1}<br />
+        {t.hero.line2}<br />
+        {t.hero.line3}
       </h1>
 
       <p class="hero-subtitle">
-        A Software Engineer with 1 year of experience developing mobile apps and
-        software solutions. I’m also an open-source believer, so I create
-        open-source products for developers around the world.
+        {t.hero.subtitle}
       </p>
 
       <div class="hero-actions">
         <Button href="#projects" variant="primary" size="lg">
-          VIEW PROJECTS
+          {t.hero.viewProjects}
           <svg
             width="16"
             height="12"
@@ -67,7 +72,7 @@ const lastName = nameParts[nameParts.length - 1];
               stroke-linejoin="round"></path>
           </svg>
         </Button>
-        <Button href="#about" variant="link" size="nav"> LEARN MORE </Button>
+        <Button href="#about" variant="link" size="nav"> {t.hero.learnMore} </Button>
       </div>
     </div>
 
@@ -76,7 +81,7 @@ const lastName = nameParts[nameParts.length - 1];
       <span class="corner-mark corner-br" aria-hidden="true"></span>
       <img
         src={`${import.meta.env.BASE_URL}assets/hero_portrait.webp`}
-        alt={data.profile.name}
+        alt={t.hero.portraitAlt.replace('{name}', data.profile.name)}
         class="portrait-img"
       />
     </div>

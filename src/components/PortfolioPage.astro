@@ -1,0 +1,55 @@
+---
+// PortfolioPage.astro - Single-page assembly of all sections (shared by en/es routes)
+import Layout from '../layouts/Layout.astro';
+import data from '../data/data.json';
+import Hero from './Hero.astro';
+import Projects from './Projects.astro';
+import About from './About.astro';
+import Timeline from './Timeline.astro';
+import Interests from './Interests.astro';
+import SkillsMarquee from './SkillsMarquee.astro';
+import Contact from './Contact.astro';
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const t = data.translations[lang];
+---
+
+<Layout lang={lang}>
+  <div class="page-container">
+    <Hero lang={lang} />
+
+    <Projects lang={lang} />
+
+    <section id="about" class="about-section">
+      <About lang={lang} />
+      <Timeline lang={lang} />
+      <Interests lang={lang} />
+    </section>
+
+    <SkillsMarquee lang={lang} />
+
+    <Contact lang={lang} />
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--page-gutter);
+  }
+
+  .about-section {
+    padding: 120px 0;
+  }
+
+  @media (max-width: 767px) {
+    .about-section {
+      padding: 64px 0;
+    }
+  }
+</style>

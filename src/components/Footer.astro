@@ -2,6 +2,13 @@
 // Footer.astro - Site footer (Figma: EL-73754d1f)
 import data from "../data/data.json";
 
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+
 const footerLinks = data.footerLinks.map((id) => data.links[id]);
 ---
 
@@ -9,7 +16,9 @@ const footerLinks = data.footerLinks.map((id) => data.links[id]);
   <div class="footer-container">
     <a href="#" class="brand-logo">{data.profile.aka}</a>
     <p class="footer-copy">
-      © {new Date().getFullYear()} {data.profile.name}. Built with ink and code.
+      {t.footer.copy
+        .replace('{year}', String(new Date().getFullYear()))
+        .replace('{name}', data.profile.name)}
     </p>
     <div class="footer-links">
       {

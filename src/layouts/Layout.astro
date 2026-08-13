@@ -3,28 +3,77 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import data from '../data/data.json';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
 interface Props {
+  lang?: 'en' | 'es';
   title?: string;
   description?: string;
 }
 
 const {
-  title = `${data.profile.aka} // ${data.profile.name} - ${data.profile.role}`,
-  description = `Hand-Drawn & Architectural Portfolio of ${data.profile.name}, ${data.profile.role}.`,
+  lang = 'en',
+  title,
+  description,
 } = Astro.props;
+
+const t = data.translations[lang];
+const profile = data.profile;
+
+const pageTitle = title ?? t.meta.title;
+const pageDescription = description ?? t.meta.description;
+const canonicalURL = Astro.canonicalURL ?? new URL(Astro.url.pathname, Astro.site);
+const enURL = getAbsoluteLocaleUrl('en', '/');
+const esURL = getAbsoluteLocaleUrl('es', '/');
+const ogImage = new URL(
+  `${import.meta.env.BASE_URL}assets/hero_portrait.webp`,
+  Astro.site,
+).toString();
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  alternateName: profile.aka,
+  url: canonicalURL,
+  jobTitle: profile.role,
+  email: `mailto:${profile.email}`,
+  address: { '@type': 'PostalAddress', addressCountry: 'MX' },
+  sameAs: [data.links.linkedin.href, data.links.github.href],
+};
 ---
 
 <!usr/bin/env html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="es" href={esURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.aka} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={lang === 'en' ? 'es_MX' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,13 +114,13 @@ const {
     </script>
   </head>
   <body>
-    <Header />
+    <Header lang={lang} />
 
     <main id="main-content">
       <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
 
     <!-- Lenis Smooth Scroll & Scroll Observer Script -->
     <script>

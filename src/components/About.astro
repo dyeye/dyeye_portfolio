@@ -4,6 +4,13 @@
 import data from '../data/data.json';
 import { marked } from 'marked';
 
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+
 const readmeRepo =
   data.profile.readmeRepo ??
   `${data.profile.githubUsername}/${data.profile.githubUsername}`;
@@ -47,8 +54,7 @@ const readmeHtml = readmeMarkdown
         <div class="readme-content" set:html={readmeHtml} />
       ) : (
         <p class="readme-fallback">
-          The README for <strong>{readmeRepo}</strong> is not available yet.
-          It will load automatically once the repository is pushed to GitHub.
+          {t.about.readmeFallback1} <strong>{readmeRepo}</strong>{t.about.readmeFallback2}
         </p>
       )}
     </div>
@@ -56,23 +62,23 @@ const readmeHtml = readmeMarkdown
 
   <div class="bio-content">
     <h2 class="about-title">
-      Hello, I'm
+      {t.about.titlePrefix}
       <span class="about-title-word">
         <span class="lime-swipe" aria-hidden="true"></span>
-        JuniorDeveloper.
+        {t.about.titleWord}
       </span>
     </h2>
 
     <p class="text-body-lg about-paragraph">
-      I’m a creative and competitive developer, proactive learner, and a solution proposer.
+      {t.about.paragraph1}
     </p>
 
     <p class="text-body-lg about-paragraph about-paragraph-muted">
-      My work bridges the gap between architectural drafting and modern UI design. I don't just build interfaces; I sketch them, outline them, and leave the construction lines visible for those who appreciate the process.
+      {t.about.paragraph2}
     </p>
 
     <div class="status-underline label-caps">
-      CURRENT STATUS: SKETCHING IDEAS
+      {t.about.status}
     </div>
   </div>
 </div>

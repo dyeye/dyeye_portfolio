@@ -4,17 +4,27 @@ import NavLink from "./NavLink.astro";
 import Button from "./Button.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import data from "../data/data.json";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+const enURL = getRelativeLocaleUrl('en', '/');
+const esURL = getRelativeLocaleUrl('es', '/');
 ---
 
 <header class="top-navbar">
   <a href="#" class="brand-logo">{data.profile.aka}</a>
 
-  <nav class="nav-center">
+  <nav class="nav-center" aria-label="Main">
     {
       data.navLinks.map((link) => (
         <NavLink
           href={link.href}
-          label={link.label}
+          label={t.nav[link.dataNav as keyof typeof t.nav]}
           dataNav={link.dataNav}
           isActive={link.dataNav === "home"}
         />
@@ -23,13 +33,30 @@ import data from "../data/data.json";
   </nav>
 
   <div class="nav-end">
-    <Button href="#contact" variant="ghost" size="md">HIRE ME</Button>
+    <Button href="#contact" variant="ghost" size="md">{t.hireMe}</Button>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <a
+        href={enURL}
+        class:list={{ "lang-link": true, active: lang === "en" }}
+        aria-current={lang === "en" ? "true" : undefined}
+      >
+        EN
+      </a>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <a
+        href={esURL}
+        class:list={{ "lang-link": true, active: lang === "es" }}
+        aria-current={lang === "es" ? "true" : undefined}
+      >
+        ES
+      </a>
+    </div>
     <ThemeToggle />
     <button
       class="hamburger"
       id="menu-toggle"
       type="button"
-      aria-label="Open menu"
+      aria-label={t.openMenu}
       aria-expanded="false"
     >
       <span class="bar"></span>
@@ -48,7 +75,7 @@ import data from "../data/data.json";
         ))
       }
       <div class="mobile-bottom">
-        <Button href="#contact" variant="primary" size="lg">HIRE ME</Button>
+        <Button href="#contact" variant="primary" size="lg">{t.hireMe}</Button>
       </div>
     </nav>
   </div>
@@ -120,6 +147,37 @@ import data from "../data/data.json";
     display: flex;
     align-items: center;
     gap: 20px;
+  }
+
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--on-surface-variant-soft);
+  }
+
+  .lang-link {
+    color: var(--on-surface-variant-soft);
+    text-decoration: none;
+    padding: 2px 4px;
+    transition: color 0.2s ease;
+  }
+
+  .lang-link:hover {
+    color: var(--primary);
+  }
+
+  .lang-link.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--lime-accent);
+  }
+
+  .lang-sep {
+    opacity: 0.5;
   }
 
   /* Hamburger — hidden on desktop */

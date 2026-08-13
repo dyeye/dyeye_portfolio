@@ -33,6 +33,15 @@ Single-page static Astro portfolio replicating a Figma design, in English. Verif
 - `links`: map of ALL shared links keyed by id (`linkedin`, `github`, `backToTop`). Each has `label`, `href`, optional `icon`/`external`. **Never repeat a URL — reference by id.**
 - `navLinks`: array of nav items with `label`, `href`, `dataNav`.
 - `socialLinks` / `footerLinks`: ordered arrays of **link ids** (strings). Components resolve them with `data.links[id]` — do not inline hrefs in components.
+- `translations`: ALL UI copy in `en` and `es`. **Never hardcode user-facing strings in components** — read them with `data.translations[lang]` (components receive `lang` prop: `'en' | 'es'`).
+
+### i18n
+
+- Astro i18n routing: `locales: ['en', 'es']`, `defaultLocale: 'en'`, `prefixDefaultLocale: false` → `/` is English, `/es/` is Spanish.
+- Pages are thin wrappers (`src/pages/index.astro` EN, `src/pages/es/index.astro` ES) around `src/components/PortfolioPage.astro`, which receives `lang` and assembles all sections.
+- `Layout.astro` sets `<html lang>`, canonical, hreflang (en/es/x-default), OG/Twitter meta and JSON-LD Person (with `alternateName: "dyeye"` for brand SEO).
+- Language switcher lives in `Header.astro` (`getRelativeLocaleUrl` from `astro:i18n`).
+- `@astrojs/sitemap` generates `sitemap-index.xml` + `robots.txt` (in `public/`) references it. Keep both languages listed.
 
 ### Components & conventions
 

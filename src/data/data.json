@@ -65,5 +65,211 @@
     "linkedin",
     "github",
     "backToTop"
-  ]
+  ],
+  "translations": {
+    "en": {
+      "meta": {
+        "title": "dyeye // Máximo Gómez Cruz - Software Engineer",
+        "description": "dyeye is the portfolio of Máximo Gómez Cruz, a Software Engineer sketching code and designing experiences. Open-source projects, mobile and web development.",
+        "ogLocale": "en_US"
+      },
+      "nav": {
+        "home": "HOME",
+        "projects": "PROJECTS",
+        "about": "ABOUT",
+        "skills": "SKILLS",
+        "contact": "CONTACT"
+      },
+      "hireMe": "HIRE ME",
+      "openMenu": "Open menu",
+      "hero": {
+        "greeting": "Hello, I'm",
+        "line1": "I sketch code and",
+        "line2": "design",
+        "line3": "experiences.",
+        "subtitle": "A Software Engineer with 1 year of experience developing mobile apps and software solutions. I'm also an open-source believer, so I create open-source products for developers around the world.",
+        "viewProjects": "VIEW PROJECTS",
+        "learnMore": "LEARN MORE",
+        "portraitAlt": "Portrait of {name}"
+      },
+      "projects": {
+        "title": "Projects",
+        "fallbackDescription": "Open-source project on GitHub.",
+        "updated": "Updated",
+        "previous": "Previous",
+        "next": "Next",
+        "previousAria": "Previous page",
+        "nextAria": "Next page"
+      },
+      "about": {
+        "readmeFallback1": "The README for",
+        "readmeFallback2": "is not available yet. It will load automatically once the repository is pushed to GitHub.",
+        "titlePrefix": "Hello, I'm",
+        "titleWord": "JuniorDeveloper.",
+        "paragraph1": "I'm a creative and competitive developer, proactive learner, and a solution proposer.",
+        "paragraph2": "My work bridges the gap between architectural drafting and modern UI design. I don't just build interfaces; I sketch them, outline them, and leave the construction lines visible for those who appreciate the process.",
+        "status": "CURRENT STATUS: SKETCHING IDEAS"
+      },
+      "timeline": {
+        "title": "My Journey",
+        "milestones": [
+          {
+            "period": "Sep 2023 - Aug 2025",
+            "title": "IT. Multiplatform Software Developer",
+            "desc": "Universidad Tecnológica de Nezahualcóyotl. Graduated. Memory: \"XPractice\"."
+          },
+          {
+            "period": "May 2025 - Aug 2025",
+            "title": "Junior Developer - Express Learning Online",
+            "list": [
+              "Lead design of UI for mobile/web",
+              "Collaborate with cross-functional teams",
+              "Mentor junior designers"
+            ]
+          },
+          {
+            "period": "Sep 2025 - Aug 2027",
+            "title": "Software Engineer",
+            "desc": "Universidad Tecnológica de Nezahualcóyotl."
+          }
+        ]
+      },
+      "interests": {
+        "title": "What drives me",
+        "cards": [
+          {
+            "title": "Structural Harmony",
+            "desc": "Finding the perfect balance between robust invisible grids and chaotic visible content."
+          },
+          {
+            "title": "Ink & Paper",
+            "desc": "The analog world is my primary source of inspiration. Moleskines over monitors."
+          },
+          {
+            "title": "Caffeine & Code",
+            "desc": "Fueling late-night debugging sessions and morning typography adjustments."
+          }
+        ]
+      },
+      "skills": {
+        "title": "My Tools & Skills",
+        "subtitle": "A look at the tools I use every day to bring ideas to life, traced from the initial sketch to the final implementation."
+      },
+      "contact": {
+        "heading": "Let's Talk",
+        "quote": "\"Let's create something amazing together!\"",
+        "yourName": "YOUR NAME",
+        "yourEmail": "YOUR EMAIL",
+        "message": "MESSAGE",
+        "messagePlaceholder": "Tell me about your project...",
+        "submit": "Send message",
+        "alert": "Thank you! Your message has been sent to {name}."
+      },
+      "footer": {
+        "copy": "© {year} {name}. Built with ink and code."
+      }
+    },
+    "es": {
+      "meta": {
+        "title": "dyeye // Máximo Gómez Cruz - Ingeniero de Software",
+        "description": "dyeye es el portafolio de Máximo Gómez Cruz, Ingeniero de Software que dibuja código y diseña experiencias. Proyectos de código abierto, desarrollo móvil y web.",
+        "ogLocale": "es_MX"
+      },
+      "nav": {
+        "home": "INICIO",
+        "projects": "PROYECTOS",
+        "about": "SOBRE MÍ",
+        "skills": "HABILIDADES",
+        "contact": "CONTACTO"
+      },
+      "hireMe": "CONTRÁTAME",
+      "openMenu": "Abrir menú",
+      "hero": {
+        "greeting": "Hola, soy",
+        "line1": "Dibujo código y",
+        "line2": "diseño",
+        "line3": "experiencias.",
+        "subtitle": "Ingeniero de Software con 1 año de experiencia desarrollando aplicaciones móviles y soluciones de software. También soy un creyente del open source, por eso creo productos de código abierto para desarrolladores de todo el mundo.",
+        "viewProjects": "VER PROYECTOS",
+        "learnMore": "SABER MÁS",
+        "portraitAlt": "Retrato de {name}"
+      },
+      "projects": {
+        "title": "Proyectos",
+        "fallbackDescription": "Proyecto de código abierto en GitHub.",
+        "updated": "Actualizado",
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "previousAria": "Página anterior",
+        "nextAria": "Página siguiente"
+      },
+      "about": {
+        "readmeFallback1": "El README de",
+        "readmeFallback2": "aún no está disponible. Se cargará automáticamente cuando se suba el repositorio a GitHub.",
+        "titlePrefix": "Hola, soy",
+        "titleWord": "JuniorDeveloper.",
+        "paragraph1": "Soy un desarrollador creativo y competitivo, aprendiz proactivo y proponente de soluciones.",
+        "paragraph2": "Mi trabajo une el dibujo arquitectónico con el diseño de interfaces modernas. No solo construyo interfaces: las boceto, las delineo y dejo las líneas de construcción visibles para quienes aprecian el proceso.",
+        "status": "ESTADO ACTUAL: BOCETANDO IDEAS"
+      },
+      "timeline": {
+        "title": "Mi Camino",
+        "milestones": [
+          {
+            "period": "Sep 2023 - Ago 2025",
+            "title": "TSU. Desarrollo de Software Multiplataforma",
+            "desc": "Universidad Tecnológica de Nezahualcóyotl. Graduado. Memorias: \"XPractice\"."
+          },
+          {
+            "period": "May 2025 - Ago 2025",
+            "title": "Junior Developer - Express Learning Online",
+            "list": [
+              "Lideré el diseño de UI para móvil/web",
+              "Colaboré con equipos multifuncionales",
+              "Mentoré a diseñadores junior"
+            ]
+          },
+          {
+            "period": "Sep 2025 - Ago 2027",
+            "title": "Ingeniero de Software",
+            "desc": "Universidad Tecnológica de Nezahualcóyotl."
+          }
+        ]
+      },
+      "interests": {
+        "title": "Lo que me mueve",
+        "cards": [
+          {
+            "title": "Harmonía estructural",
+            "desc": "Encontrar el equilibrio perfecto entre rejillas invisibles robustas y contenido visible caótico."
+          },
+          {
+            "title": "Tinta y papel",
+            "desc": "El mundo análogo es mi principal fuente de inspiración. Moleskines antes que monitores."
+          },
+          {
+            "title": "Cafeína y código",
+            "desc": "Combustible para sesiones de debugging nocturnas y ajustes de tipografía matutinos."
+          }
+        ]
+      },
+      "skills": {
+        "title": "Mis Herramientas & Habilidades",
+        "subtitle": "Un vistazo a las herramientas que utilizo diariamente para dar vida a ideas, trazadas desde el boceto inicial hasta la implementación final."
+      },
+      "contact": {
+        "heading": "Hablemos",
+        "quote": "\"¡Creemos algo increíble juntos!\"",
+        "yourName": "TU NOMBRE",
+        "yourEmail": "TU EMAIL",
+        "message": "MENSAJE",
+        "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+        "submit": "Enviar mensaje",
+        "alert": "¡Gracias! Tu mensaje ha sido enviado a {name}."
+      },
+      "footer": {
+        "copy": "© {year} {name}. Hecho con tinta y código."
+      }
+    }
+  }
 }

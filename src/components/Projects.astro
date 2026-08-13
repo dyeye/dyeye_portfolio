@@ -4,6 +4,13 @@ import ProjectCard from "./ProjectCard.astro";
 import Button from "./Button.astro";
 import data from "../data/data.json";
 
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = data.translations[lang];
+
 interface GhRepo {
   name: string;
   description: string | null;
@@ -51,7 +58,7 @@ const formatDate = (iso: string) =>
 <section id="projects" class="projects-section reveal-scroll">
   <div class="projects-header">
     <span class="header-highlight" aria-hidden="true"></span>
-    <h2 class="projects-title">Projects</h2>
+    <h2 class="projects-title">{t.projects.title}</h2>
   </div>
 
   <div class="projects-grid" data-projects-grid>
@@ -61,13 +68,13 @@ const formatDate = (iso: string) =>
           href={project.html_url}
           title={project.name}
           summary={
-            project.description ?? "Open-source project on GitHub."
+            project.description ?? t.projects.fallbackDescription
           }
           tools={`Stack: ${project.language ?? "—"}`}
           tags={project.language ? [`#${project.language}`] : ["#OpenSource"]}
           stars={project.stargazers_count}
           forks={project.forks_count}
-          updatedAt={`Updated ${formatDate(project.updated_at)}`}
+          updatedAt={`${t.projects.updated} ${formatDate(project.updated_at)}`}
           arrow={true}
         />
       ))
@@ -82,9 +89,9 @@ const formatDate = (iso: string) =>
           variant="outline"
           size="md"
           id="projects-prev"
-          ariaLabel="Previous page"
+          ariaLabel={t.projects.previousAria}
         >
-          Previous
+          {t.projects.previous}
         </Button>
         <span class="pagination-info label-caps" id="projects-page-info">
           1 / {totalPages}
@@ -94,9 +101,9 @@ const formatDate = (iso: string) =>
           variant="outline"
           size="md"
           id="projects-next"
-          ariaLabel="Next page"
+          ariaLabel={t.projects.nextAria}
         >
-          Next
+          {t.projects.next}
         </Button>
       </div>
     )
