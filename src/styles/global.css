@@ -60,7 +60,7 @@ html {
   font-size: 16px;
   line-height: 1.6;
   scroll-behavior: auto;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html.lenis,
@@ -79,7 +79,7 @@ body {
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
     linear-gradient(180deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
