@@ -84,6 +84,7 @@ const esURL = getRelativeLocaleUrl('es', '/');
 <script>
   const btn = document.getElementById("menu-toggle");
   const overlay = document.getElementById("mobile-overlay");
+  const navbar = document.querySelector(".top-navbar");
 
   btn?.addEventListener("click", () => {
     const isOpen = overlay?.classList.toggle("open");
@@ -99,6 +100,26 @@ const esURL = getRelativeLocaleUrl('es', '/');
       btn?.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     }),
+  );
+
+  // Hide on scroll down, reveal on scroll up (skip near the top / menu open)
+  let lastY = window.scrollY;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      const menuOpen = overlay?.classList.contains("open");
+      if (menuOpen || y <= 80) {
+        navbar?.classList.remove("hidden");
+      } else if (y > lastY + 6) {
+        navbar?.classList.add("hidden");
+      } else if (y < lastY - 4) {
+        navbar?.classList.remove("hidden");
+      }
+      lastY = y;
+    },
+    { passive: true },
   );
 </script>
 
@@ -117,6 +138,12 @@ const esURL = getRelativeLocaleUrl('es', '/');
     flex-wrap: nowrap;
     align-items: center;
     gap: 24px;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .top-navbar.hidden {
+    transform: translateY(-100%);
   }
 
   .brand-logo {
