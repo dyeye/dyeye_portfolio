@@ -23,7 +23,7 @@ async function fetchReadme(repo: string): Promise<string | null> {
     const res = await fetch(`https://api.github.com/repos/${repo}/readme`, {
       headers: {
         Accept: 'application/vnd.github.raw+json',
-        'User-Agent': 'acquadev-portfolio',
+        'User-Agent': 'dyeye-portfolio',
       },
     });
     if (res.ok) return await res.text();
@@ -47,8 +47,8 @@ const readmeHtml = readmeMarkdown
         <div class="readme-content" set:html={readmeHtml} />
       ) : (
         <p class="readme-fallback">
-          El README de <strong>{readmeRepo}</strong> aún no está disponible.
-          Se cargará automáticamente cuando se suba el repositorio a GitHub.
+          The README for <strong>{readmeRepo}</strong> is not available yet.
+          It will load automatically once the repository is pushed to GitHub.
         </p>
       )}
     </div>

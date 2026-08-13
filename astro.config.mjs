@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://acquadev.github.io',
-    base: '/acquadev_portfolio/',
+    site: 'https://dyeye.github.io',
+    base: '/dyeye_portfolio/',
     output: 'static'
 });

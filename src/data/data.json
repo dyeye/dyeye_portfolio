@@ -2,14 +2,14 @@
   "profile": {
     "name": "Máximo Gómez Cruz",
     "shortName": "Máximo",
-    "aka": "acquadev",
+    "aka": "dyeye",
     "role": "Software Engineer",
     "email": "maximogomezcruz@gmail.com",
-    "location": "México",
+    "location": "Mexico",
     "school": "Universidad Tecnológica de Nezahualcóyotl",
-    "grade": "Ingeniería en Software",
-    "githubUsername": "acquadev056",
-    "readmeRepo": "acquadev056/acquadev056"
+    "grade": "Software Engineering",
+    "githubUsername": "dyeye",
+    "readmeRepo": "dyeye/dyeye"
   },
   "links": {
     "linkedin": {
@@ -20,7 +20,7 @@
     },
     "github": {
       "label": "GitHub",
-      "href": "https://github.com/acquadev056",
+      "href": "https://github.com/dyeye",
       "icon": "github",
       "external": true
     },

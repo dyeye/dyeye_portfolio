@@ -1,5 +1,7 @@
 ## Development
 
+Bun is the only package manager. Install deps with `bun install`, never npm/pnpm/yarn.
+
 When starting the dev server, use background mode:
 
 ```
@@ -21,13 +23,13 @@ Consult these guides before working on related tasks:
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
-## Project: Portfolio "acquadev" (Figma replica)
+## Project: Portfolio "dyeye" (Figma replica)
 
-Single-page static Astro portfolio replicating a Figma design, in Spanish. Verify changes with `npm run build`.
+Single-page static Astro portfolio replicating a Figma design, in English. Verify changes with `npm run build`.
 
 ### Single source of truth: `src/data/data.json`
 
-- `profile`: name, shortName, aka (brand "acquadev"), role, email, location, school, grade, githubUsername.
+- `profile`: name, shortName, aka (brand "dyeye"), role, email, location, school, grade, githubUsername.
 - `links`: map of ALL shared links keyed by id (`linkedin`, `github`, `backToTop`). Each has `label`, `href`, optional `icon`/`external`. **Never repeat a URL — reference by id.**
 - `navLinks`: array of nav items with `label`, `href`, `dataNav`.
 - `socialLinks` / `footerLinks`: ordered arrays of **link ids** (strings). Components resolve them with `data.links[id]` — do not inline hrefs in components.
