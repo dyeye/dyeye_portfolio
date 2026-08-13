@@ -229,6 +229,52 @@ const readmeHtml = readmeMarkdown
     margin: 8px 0;
   }
 
+  /* Smaller README typography on mobile so the content fits the screen */
+  @media (max-width: 767px) {
+    .readme-frame {
+      padding: 16px;
+    }
+
+    .readme-content {
+      font-size: 0.8125rem;
+      line-height: 20px;
+    }
+
+    .readme-content h1,
+    .readme-content h2,
+    .readme-content h3,
+    .readme-content h4 {
+      line-height: 1.25;
+    }
+
+    .readme-content h1 {
+      font-size: 1.125rem;
+      margin: 12px 0 6px;
+    }
+
+    .readme-content h2 {
+      font-size: 1rem;
+      margin: 10px 0 6px;
+    }
+
+    .readme-content h3,
+    .readme-content h4 {
+      font-size: 0.875rem;
+      margin: 8px 0 4px;
+    }
+
+    .readme-content p,
+    .readme-content ul,
+    .readme-content ol {
+      margin: 6px 0;
+    }
+
+    .readme-content img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
   .readme-fallback {
     font-family: var(--font-body);
     font-size: 1rem;

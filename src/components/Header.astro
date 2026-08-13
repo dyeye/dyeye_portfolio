@@ -64,43 +64,66 @@ const esURL = getRelativeLocaleUrl('es', '/');
       <span class="bar"></span>
     </button>
   </div>
-
-  <div class="mobile-overlay" id="mobile-overlay">
-    <nav class="mobile-nav">
-      {
-        data.navLinks.map((link) => (
-          <a href={link.href} class="mobile-link" data-nav={link.dataNav}>
-            {link.label}
-          </a>
-        ))
-      }
-      <div class="mobile-bottom">
-        <Button href="#contact" variant="primary" size="lg">{t.hireMe}</Button>
-      </div>
-    </nav>
-  </div>
 </header>
+
+<div class="mobile-backdrop" id="mobile-backdrop" aria-hidden="true"></div>
+
+<div class="mobile-overlay" id="mobile-overlay">
+  <nav class="mobile-nav">
+    {
+      data.navLinks.map((link) => (
+        <a href={link.href} class="mobile-link" data-nav={link.dataNav}>
+          {link.label}
+        </a>
+      ))
+    }
+    <div class="mobile-bottom">
+      <Button href="#contact" variant="primary" size="lg">{t.hireMe}</Button>
+    </div>
+  </nav>
+</div>
 
 <script>
   const btn = document.getElementById("menu-toggle");
   const overlay = document.getElementById("mobile-overlay");
+  const backdrop = document.getElementById("mobile-backdrop");
   const navbar = document.querySelector(".top-navbar");
 
+  // Scroll-lock via overflow:hidden on <html> (keeps the document height intact
+  // so Lenis still measures the correct scroll limit; position:fixed collapsed it)
+  const openMenu = () => {
+    overlay?.classList.add("open");
+    backdrop?.classList.add("open");
+    btn?.classList.add("active");
+    btn?.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("menu-locked");
+  };
+
+  const closeMenu = () => {
+    overlay?.classList.remove("open");
+    backdrop?.classList.remove("open");
+    btn?.classList.remove("active");
+    btn?.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("menu-locked");
+  };
+
   btn?.addEventListener("click", () => {
-    const isOpen = overlay?.classList.toggle("open");
-    btn.classList.toggle("active", isOpen);
-    btn.setAttribute("aria-expanded", String(!!isOpen));
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (overlay?.classList.contains("open")) closeMenu();
+    else openMenu();
   });
 
+  backdrop?.addEventListener("click", closeMenu);
+
   overlay?.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => {
-      overlay.classList.remove("open");
-      btn?.classList.remove("active");
-      btn?.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }),
+    a.addEventListener("click", closeMenu),
   );
+
+  // If the viewport grows past mobile while the menu is open, close it
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 767 && btn?.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+    }
+  });
 
   // Hide on scroll down, reveal on scroll up (skip near the top / menu open)
   let lastY = window.scrollY;
@@ -246,7 +269,8 @@ const esURL = getRelativeLocaleUrl('es', '/');
   }
 
   /* Mobile overlay — hidden on desktop */
-  .mobile-overlay {
+  .mobile-overlay,
+  .mobile-backdrop {
     display: none;
   }
 
@@ -286,6 +310,8 @@ const esURL = getRelativeLocaleUrl('es', '/');
       z-index: 999;
       transform: translateX(100%);
       visibility: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       transition:
         transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
         visibility 0.3s ease;
@@ -293,6 +319,24 @@ const esURL = getRelativeLocaleUrl('es', '/');
 
     .mobile-overlay.open {
       transform: translateX(0);
+      visibility: visible;
+    }
+
+    .mobile-backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    }
+
+    .mobile-backdrop.open {
+      opacity: 1;
       visibility: visible;
     }
 

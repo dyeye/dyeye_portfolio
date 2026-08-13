@@ -68,6 +68,13 @@ html.lenis body {
   height: auto;
 }
 
+/* Locks page scroll while the mobile menu is open (does NOT collapse the
+   document height, so Lenis keeps measuring the correct scroll limit) */
+html.menu-locked,
+html.menu-locked body {
+  overflow: hidden;
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
